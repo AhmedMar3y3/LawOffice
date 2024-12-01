@@ -20,7 +20,6 @@ class AttachmentController extends Controller
         }
 
         $attachments = $case->attachments;
-
         return response()->json($attachments, 200);
     }
 

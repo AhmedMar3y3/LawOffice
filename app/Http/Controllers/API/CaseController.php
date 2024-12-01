@@ -22,6 +22,8 @@ class CaseController extends Controller
         $cases = $customer->cases()->with('category', 'payments')->get()->map(function ($case) {
             $paidAmount = $case->payments->sum('amount');
             $remainingAmount = $case->contract_price - $paidAmount;
+
+        
     
             return [
                 'case number' => $case->case_number,

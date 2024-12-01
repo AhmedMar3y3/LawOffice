@@ -10,6 +10,7 @@ use App\Http\Controllers\API\CustomerController;
 use App\Http\Controllers\API\AttachmentController;
 use App\Http\Controllers\API\SessionController;
 use App\Http\Controllers\API\PaymentController;
+use App\Http\Controllers\API\GettingController;
 
 //////////////////////////  User Public Routes  //////////////////////////
 Route::post('/register', [AuthController::class, 'register']);
@@ -68,22 +69,10 @@ Route::group(['middleware' => 'auth:sanctum'], function () {
                     Route::delete('/payment/{payment}', [PaymentController::class, 'destroy']);
                 });
 });
+
+              //getting routes
+                    Route::get('/sessions', [GettingController::class, 'getAllSessions']);
+                    Route::get('/payments', [GettingController::class, 'getAllPayments']);
+                    Route::get('/cases', [GettingController::class, 'getAllCases']);
+                    Route::get('/attachments', [GettingController::class, 'getAllAttachments']);
 });
-
-
-
- // //Case routes
-        // Route::get('/cases', [CaseController::class, 'index']);
-        // Route::get('/case/{case}', [CaseController::class, 'show']);
-        // Route::post('/store-case', [CaseController::class, 'store']);
-        // Route::post('/update-case/{case}', [CaseController::class, 'update']);
-        // Route::delete('/case/{case}', [CaseController::class, 'destroy']);
-
-        // //Attachment routes
-        // Route::get('/attachments', [CaseController::class, 'index']);
-        // Route::get('/attachment/{attachment}', [CaseController::class, 'show']);
-        // Route::post('/store-attachment', [CaseController::class, 'store']);
-        // Route::post('/update-attachment/{attachment}', [CaseController::class, 'update']);
-        // Route::delete('/attachment/{attachment}', [CaseController::class, 'destroy']);
-
-
