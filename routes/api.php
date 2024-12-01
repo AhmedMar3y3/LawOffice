@@ -8,6 +8,8 @@ use App\Http\Controllers\API\CaseController;
 use App\Http\Controllers\API\CustomerCategryController;
 use App\Http\Controllers\API\CustomerController;
 use App\Http\Controllers\API\AttachmentController;
+use App\Http\Controllers\API\ExpenseCategoryController;
+use App\Http\Controllers\API\ExpenseController;
 use App\Http\Controllers\API\SessionController;
 use App\Http\Controllers\API\PaymentController;
 use App\Http\Controllers\API\GettingController;
@@ -70,9 +72,23 @@ Route::group(['middleware' => 'auth:sanctum'], function () {
                 });
 });
 
-              //getting routes
-                    Route::get('/sessions', [GettingController::class, 'getAllSessions']);
-                    Route::get('/payments', [GettingController::class, 'getAllPayments']);
-                    Route::get('/cases', [GettingController::class, 'getAllCases']);
-                    Route::get('/attachments', [GettingController::class, 'getAllAttachments']);
+       
+       //getting routes
+       Route::get('/sessions', [GettingController::class, 'getAllSessions']);
+       Route::get('/payments', [GettingController::class, 'getAllPayments']);
+       Route::get('/cases', [GettingController::class, 'getAllCases']);
+       Route::get('/attachments', [GettingController::class, 'getAllAttachments']);
+
+        //Expenses category routes
+        Route::get('/expense-categories', [ExpenseCategoryController::class, 'index']);
+        Route::post('/expense-category', [ExpenseCategoryController::class, 'store']);
+        Route::delete('/expense-category/{category}', [ExpenseCategoryController::class, 'destroy']);
+
+          //Expenses routes
+          Route::get('/expenses', [ExpenseController::class, 'index']);
+          Route::get('/expense/{expense}', [ExpenseController::class, 'show']);
+          Route::post('/store-expense', [ExpenseController::class, 'store']);
+          Route::post('/update-expense/{expense}', [ExpenseController::class, 'update']);
+          Route::delete('/expense/{expense}', [ExpenseController::class, 'destroy']);
+  
 });
