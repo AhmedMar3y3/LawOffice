@@ -10,12 +10,18 @@ use App\Models\CustomerCategory;
 
 class CustomerController extends Controller
 {
-   
     public function index()
     {
-        $customers = auth()->user()->customers;
+        $query = auth()->user()->customers();
+    
+        if (request()->has('name')) {
+            $query->where('name', 'LIKE', '%' . request('name') . '%');
+        }
+        $customers = $query->get();
+    
         return response()->json($customers, 200);
     }
+    
 
   
 

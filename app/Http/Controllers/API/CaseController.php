@@ -18,12 +18,18 @@ class CaseController extends Controller
         if (!$customer || $customer->user_id !== auth()->id()) {
             return response()->json('غير مصرح', 403);
         }
+        $categoryName = request()->query('case_category');  
+        $casesQuery = $customer->cases()->with('category', 'payments');
     
-        $cases = $customer->cases()->with('category', 'payments')->get()->map(function ($case) {
+        if ($categoryName) {
+            $casesQuery->whereHas('category', function ($query) use ($categoryName) {
+                $query->where('name', 'LIKE', '%' . $categoryName . '%');
+            });
+        }
+    
+        $cases = $casesQuery->get()->map(function ($case) {
             $paidAmount = $case->payments->sum('amount');
             $remainingAmount = $case->contract_price - $paidAmount;
-
-        
     
             return [
                 'case number' => $case->case_number,
@@ -39,6 +45,7 @@ class CaseController extends Controller
     
         return response()->json($cases, 200);
     }
+    
     
 
     public function store(storeCaseRequest $request, $customer_id)
