@@ -57,7 +57,7 @@ class PaymentController extends Controller
             'message' => 'تم إضافة المبلغ بنجاح',
         ], 201);
     }
-
+    
     public function show($customer_id, $case_id, $payment_id)
     {
         $payment = Payment::find($payment_id);
@@ -70,15 +70,14 @@ class PaymentController extends Controller
         ) {
             return response()->json('غير مصرح', 403);
         }
-
-        $case = $payment->case;
-        $paidAmount = $case->payments->sum('amount');
-        $remainingAmount = $case->contract_price - $paidAmount;
+        // $paidAmount = $payment->case->payments->sum('amount');
+        // $remainingAmount = $payment->case->contract_price - $paidAmount;
+    
 
         return response()->json([
             'payment' => $payment,
-            'paid_amount' => $paidAmount,
-            'remaining_amount' => $remainingAmount,
+            // 'paid_amount' => $payment->case->payments->sum('amount'),
+            // 'remaining_amount' => $payment->case->contract_price - $payment->case->payments->sum('amount'),
         ], 200);
     }
 

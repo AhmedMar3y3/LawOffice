@@ -13,6 +13,7 @@ use App\Http\Controllers\API\ExpenseController;
 use App\Http\Controllers\API\SessionController;
 use App\Http\Controllers\API\PaymentController;
 use App\Http\Controllers\API\GettingController;
+use App\Http\Controllers\API\HomeController;
 
 //////////////////////////  User Public Routes  //////////////////////////
 Route::post('/register', [AuthController::class, 'register']);
@@ -90,5 +91,8 @@ Route::group(['middleware' => 'auth:sanctum'], function () {
           Route::post('/store-expense', [ExpenseController::class, 'store']);
           Route::post('/update-expense/{expense}', [ExpenseController::class, 'update']);
           Route::delete('/expense/{expense}', [ExpenseController::class, 'destroy']);
+
+          //Payment routes
+          Route::get('/home', [HomeController::class, 'index']);
   
 });

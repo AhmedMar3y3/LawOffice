@@ -31,6 +31,10 @@ public function cases()
 {
     return $this->hasMany(Issue::class);
 }
+public function casess()
+{
+    return $this->belongsTo(Issue::class);
+}
 
 public function category()
 {
