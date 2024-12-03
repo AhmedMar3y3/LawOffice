@@ -90,7 +90,6 @@ public function getAllCases()
 
     return response()->json([
         'cases' => $cases->map(function ($case) {
-            // Calculate the paid and remaining amounts
             $paidAmount = $case->payments->sum('amount');
             $remainingAmount = $case->contract_price - $paidAmount;
 
