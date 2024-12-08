@@ -32,6 +32,7 @@ class CaseController extends Controller
             $remainingAmount = $case->contract_price - $paidAmount;
     
             return [
+                'case id' => $case->id,
                 'case number' => $case->case_number,
                 'customer name' => $case->customer->name,
                 'customer phone' => $case->customer->phone,

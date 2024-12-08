@@ -43,56 +43,58 @@ Route::group(['middleware' => 'auth:sanctum'], function () {
         Route::delete('/case-category/{category}', [CaseCategryController::class, 'destroy']);
 
         //Case routes
-        Route::prefix('/customer/{customer}')->group(function () {
-                Route::get('/cases', [CaseController::class, 'index']);
-                Route::get('/case/{case}', [CaseController::class, 'show']);
-                Route::post('/store-case', [CaseController::class, 'store']);
-                Route::post('/update-case/{case}', [CaseController::class, 'update']);
-                Route::delete('/case/{case}', [CaseController::class, 'destroy']);
+      Route::prefix('/customer/{customer}')->group(function () {
+        Route::get('/cases', [CaseController::class, 'index']);
+        Route::get('/case/{case}', [CaseController::class, 'show']);
+        Route::post('/store-case', [CaseController::class, 'store']);
+        Route::post('/update-case/{case}', [CaseController::class, 'update']);
+        Route::delete('/case/{case}', [CaseController::class, 'destroy']);
         
-                // Attachment routes
-                Route::prefix('/case/{case}')->group(function () {
-                    Route::get('/attachments', [AttachmentController::class, 'index']);
-                    Route::get('/attachment/{attachment}', [AttachmentController::class, 'show']);
-                    Route::post('/store-attachment', [AttachmentController::class, 'store']);
-                    Route::post('/update-attachment/{attachment}', [AttachmentController::class, 'update']);
-                    Route::delete('/attachment/{attachment}', [AttachmentController::class, 'destroy']);
-               // Session routes
-                    Route::get('/sessions', [SessionController::class, 'index']);
-                    Route::get('/session/{session}', [SessionController::class, 'show']);
-                    Route::post('/store-session', [SessionController::class, 'store']);
-                    Route::post('/update-session/{session}', [SessionController::class, 'update']);
-                    Route::delete('/session/{session}', [SessionController::class, 'destroy']);
+        // Attachment routes
+        Route::prefix('/case/{case}')->group(function () {
+        Route::get('/attachments', [AttachmentController::class, 'index']);
+        Route::get('/attachment/{attachment}', [AttachmentController::class, 'show']);
+        Route::post('/store-attachment', [AttachmentController::class, 'store']);
+        Route::post('/update-attachment/{attachment}', [AttachmentController::class, 'update']);
+        Route::delete('/attachment/{attachment}', [AttachmentController::class, 'destroy']);
+        // Session routes
+        Route::get('/sessions', [SessionController::class, 'index']);
+        Route::get('/session/{session}', [SessionController::class, 'show']);
+        Route::post('/store-session', [SessionController::class, 'store']);
+        Route::post('/update-session/{session}', [SessionController::class, 'update']);
+        Route::delete('/session/{session}', [SessionController::class, 'destroy']);
 
-               // Payment routes
-                    Route::get('/payments', [PaymentController::class, 'index']);
-                    Route::get('/payment/{payment}', [PaymentController::class, 'show']);
-                    Route::post('/store-payment', [PaymentController::class, 'store']);
-                    Route::post('/update-payment/{payment}', [PaymentController::class, 'update']);
-                    Route::delete('/payment/{payment}', [PaymentController::class, 'destroy']);
-                });
+        // Payment routes
+        Route::get('/payments', [PaymentController::class, 'index']);
+        Route::get('/payment/{payment}', [PaymentController::class, 'show']);
+        Route::post('/store-payment', [PaymentController::class, 'store']);
+        Route::post('/update-payment/{payment}', [PaymentController::class, 'update']);
+        Route::delete('/payment/{payment}', [PaymentController::class, 'destroy']);
+               
+     });
 });
 
        
-       //getting routes
-       Route::get('/sessions', [GettingController::class, 'getAllSessions']);
-       Route::get('/payments', [GettingController::class, 'getAllPayments']);
-       Route::get('/cases', [GettingController::class, 'getAllCases']);
-       Route::get('/attachments', [GettingController::class, 'getAllAttachments']);
+        //getting routes
+        Route::get('/sessions', [GettingController::class, 'getAllSessions']);
+        Route::get('/payments', [GettingController::class, 'getAllPayments']);
+        Route::get('/cases', [GettingController::class, 'getAllCases']);
+        Route::get('/attachments', [GettingController::class, 'getAllAttachments']);
 
         //Expenses category routes
         Route::get('/expense-categories', [ExpenseCategoryController::class, 'index']);
         Route::post('/expense-category', [ExpenseCategoryController::class, 'store']);
         Route::delete('/expense-category/{category}', [ExpenseCategoryController::class, 'destroy']);
 
-          //Expenses routes
-          Route::get('/expenses', [ExpenseController::class, 'index']);
-          Route::get('/expense/{expense}', [ExpenseController::class, 'show']);
-          Route::post('/store-expense', [ExpenseController::class, 'store']);
-          Route::post('/update-expense/{expense}', [ExpenseController::class, 'update']);
-          Route::delete('/expense/{expense}', [ExpenseController::class, 'destroy']);
+        //Expenses routes
+        Route::get('/expenses', [ExpenseController::class, 'index']);
+        Route::get('/expense/{expense}', [ExpenseController::class, 'show']);
+        Route::post('/store-expense', [ExpenseController::class, 'store']);
+        Route::post('/update-expense/{expense}', [ExpenseController::class, 'update']);
+        Route::delete('/expense/{expense}', [ExpenseController::class, 'destroy']);
 
-          //Payment routes
-          Route::get('/home', [HomeController::class, 'index']);
+        //Home routes
+        Route::get('/home', [HomeController::class, 'index']);
+        Route::get('/session-dates', [HomeController::class, 'sessionDates']);
   
 });

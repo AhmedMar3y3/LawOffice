@@ -19,6 +19,9 @@ class HomeController extends Controller
         $expenses = auth()->user()->expenses()->sum('amount');
         $expenses = (int) $expenses;
         $revnue = $payments - $expenses;
+
+         $this->sendReminders();
+
         return response()->json([
             'customers' => $customers,
             'cases' => $cases,
@@ -29,5 +32,17 @@ class HomeController extends Controller
             'expenses' => $expenses,
             'revnue' => $revnue,
         ]);
+    }
+
+    public function sessionDates(){
+        $dates = auth()->user()->customers()->with('cases.sessions')->get()
+        ->pluck('cases')->flatten()
+        ->pluck('sessions')->flatten()
+        ->pluck('date')->filter(function ($date) 
+        {
+            return \Carbon\Carbon::parse($date)->isCurrentMonth();
+        }
+    );
+        return response()->json($dates);
     }
 }

@@ -8,9 +8,24 @@ use App\Http\Requests\session\update;
 use App\Models\Session;
 use App\Models\Issue;
 use Illuminate\Http\Request;
+use Illuminate\Support\Carbon;
+use Illuminate\Support\Facades\Mail;
+use App\Mail\SessionReminderMail;
 
 class SessionController extends Controller
 {
+    // public function index($customer_id, $case_id)
+    // {
+    //     $case = Issue::find($case_id);
+
+    //     if (!$case || $case->customer_id != $customer_id || $case->customer->user_id !== auth()->id()) {
+    //         return response()->json('غير مصرح', 403);
+    //     }
+
+    //     $sessions = $case->sessions;
+
+    //     return response()->json($sessions, 200);
+    // }
     public function index($customer_id, $case_id)
     {
         $case = Issue::find($case_id);
@@ -19,10 +34,14 @@ class SessionController extends Controller
             return response()->json('غير مصرح', 403);
         }
 
+        // $this->sendReminders();
+
         $sessions = $case->sessions;
 
         return response()->json($sessions, 200);
     }
+
+
 
     public function store(store $request, $customer_id, $case_id)
     {

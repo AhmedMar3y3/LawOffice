@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class Session extends Model
 {
     use HasFactory;
-    protected $fillable =['title','description','date','case_id'];
+    protected $fillable =['title','description','date','case_id','reminder_sent'];
 
     public function case()
     {
