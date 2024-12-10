@@ -6,7 +6,6 @@ use App\Http\Controllers\Controller;
 use App\Models\Attachment;
 use App\Models\Issue;
 use App\Models\Payment;
-use Illuminate\Http\Request;
 use App\Models\Session;
 
 class GettingController extends Controller
@@ -23,11 +22,13 @@ class GettingController extends Controller
         'sessions' => $sessions->map(function ($session) {
             return [
                 'session_id' => $session->id,
+                'case_id' => $session->case->id,
+                'case_number' => $session->case->case_number,
+                'customer_id' => $session->case->customer->id,
+                'customer_name' => $session->case->customer->name,
                 'title' => $session->title,
                 'description' => $session->description,
                 'date' => $session->date,
-                'case_number' => $session->case->case_number,
-                'customer_name' => $session->case->customer->name,
             ];
         }),
     ], 200);
@@ -46,13 +47,14 @@ class GettingController extends Controller
         'payments' => $payments->map(function ($payment) {
             return [
                 'payment_id' => $payment->id,
+                'case_id' => $payment->case->id,
+                'case_number' => $payment->case->case_number,
+                'customer_id' => $payment->case->customer->id,
+                'customer_name' => $payment->case->customer->name,
                 'title' => $payment->title,
                 'amount' => $payment->amount,
                 'method' => $payment->method,
                 'date' => $payment->date,
-                'case_id' => $payment->case->id,
-                'case_number' => $payment->case->case_number,
-                'customer_name' => $payment->case->customer->name,
             ];
         }),
     ], 200);
@@ -69,12 +71,13 @@ class GettingController extends Controller
         'attachments' => $attachments->map(function ($attachment) {
             return [
                 'attachment_id' => $attachment->id,
+                'case_id' => $attachment->case->id,
+                'case_number' => $attachment->case->case_number,
+                'customer_id' => $attachment->case->customer->id,
+                'customer_name' => $attachment->case->customer->name,
                 'title' => $attachment->title,
                 'file path' => $attachment->file_path,
                 'file type' => $attachment->file_type,
-                'case_id' => $attachment->case->id,
-                'case_number' => $attachment->case->case_number,
-                'customer_name' => $attachment->case->customer->name,
             ];
         }),
     ], 200);
@@ -82,7 +85,7 @@ class GettingController extends Controller
     
 public function getAllCases()
 {
-    $cases = Issue::with('customer', 'category', 'payments') // Eager load the necessary relationships
+    $cases = Issue::with('customer', 'category', 'payments')
         ->whereHas('customer', function ($query) {
             $query->where('user_id', auth()->id());
         })
@@ -90,13 +93,13 @@ public function getAllCases()
 
     return response()->json([
         'cases' => $cases->map(function ($case) {
-            // Calculate the paid and remaining amounts
             $paidAmount = $case->payments->sum('amount');
             $remainingAmount = $case->contract_price - $paidAmount;
 
             return [
                 'case_id' => $case->id,
                 'case_number' => $case->case_number,
+                'customer_id' => $case->customer->id,
                 'customer_name' => $case->customer->name,
                 'customer_phone' => $case->customer->phone,
                 'customer_category' => $case->customer->category->name,
