@@ -24,8 +24,8 @@ class PaymentController extends Controller
         $remainingAmount = $case->contract_price - $paidAmount;
 
         return response()->json([
-            'payments' => $payments,
-            'paid_amount' => $paidAmount,
+            'payments'         => $payments,
+            'paid_amount'      => $paidAmount,
             'remaining_amount' => $remainingAmount,
         ], 200);
     }
@@ -70,14 +70,10 @@ class PaymentController extends Controller
         ) {
             return response()->json('غير مصرح', 403);
         }
-        // $paidAmount = $payment->case->payments->sum('amount');
-        // $remainingAmount = $payment->case->contract_price - $paidAmount;
     
 
         return response()->json([
             'payment' => $payment,
-            // 'paid_amount' => $payment->case->payments->sum('amount'),
-            // 'remaining_amount' => $payment->case->contract_price - $payment->case->payments->sum('amount'),
         ], 200);
     }
 
@@ -96,7 +92,6 @@ class PaymentController extends Controller
     
         $validatedData = $request->validated();
     
-        // Handle updates to the amount field if it exists
         if (isset($validatedData['amount'])) {
             $case = $payment->case;
             $paidAmount = $case->payments->where('id', '!=', $payment->id)->sum('amount');

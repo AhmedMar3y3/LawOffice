@@ -18,13 +18,6 @@ class AuthController extends Controller
     { 
         $validatedData = $request->validated();
         $validatedData['password'] = Hash::make($validatedData['password']);
-        // if ($request->hasFile('image')) {
-        //     $imageName = $request->file('image')->getClientOriginalName();
-    
-        //     $request->file('image')->move(public_path('images/users/'), $imageName);
-    
-        //     $validatedData['image'] = $imageName;
-        // }
         $user = User::create($validatedData);     
         $user->save();
         return response()->json([ 
@@ -86,8 +79,8 @@ class AuthController extends Controller
     public function resetPassword(Request $request)
     {
         $request->validate([
-            'email' => 'required|email',
-            'code' => 'required|numeric',
+            'email'    => 'required|email',
+            'code'     => 'required|numeric',
             'password' => 'required|confirmed',
         ]);
 

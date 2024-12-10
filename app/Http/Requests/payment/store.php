@@ -21,12 +21,12 @@ class store extends FormRequest
      */
     public function rules(): array
     {
-        return [
-            'title' => 'required|string|max:255',
+        return 
+        [
+            'title'  => 'required|string|max:255',
             'amount' => 'required|numeric',
-            'date' => 'required|date',
-            'method' => 'nullable|string|max:255',
-            // 'case_id' => 'required|exists:issues,id',
+            'date'   => 'required|date',
+            'method' => 'nullable|string|max:255',       
         ];
     }
 }

@@ -6,7 +6,6 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\attachment\store;
 use App\Http\Requests\attachment\update;
 use App\Models\Attachment;
-use App\Models\Customer;
 use App\Models\Issue;
 
 class AttachmentController extends Controller
@@ -35,16 +34,12 @@ class AttachmentController extends Controller
         $filePath = $file->store('attachments');
         if ($request->hasFile('file')) {
             $file = $request->file('file');
-            $fileName = time() . '-' . uniqid() . '.' . $file->getClientOriginalExtension();
-            
-            // Move the uploaded file to the public/attachments directory
+            $fileName = time() . '-' . uniqid() . '.' . $file->getClientOriginalExtension();  
             $file->move(public_path('attachments'), $fileName);
-
-            // Save the public URL path in the database
             $filePath = env('APP_URL') . '/public/attachments/' . $fileName;
         }
         $attachment = $case->attachments()->create([
-            'title' => $request->title,
+            'title'     => $request->title,
             'file_path' => $filePath,
             'file_type' => $file->getClientOriginalExtension(),
         ]);

@@ -22,21 +22,19 @@ class updateCaseRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'customer_id' => 'nullable|exists:customers,id',
-            'opponent_name' => 'nullable|string',
-            'opponent_phone' => 'nullable|string',
-            'opponent_nation' => 'nullable|string',
+            'opponent_name'    => 'nullable|string',
+            'opponent_phone'   => 'nullable|string',
+            'opponent_nation'  => 'nullable|string',
             'opponent_address' => 'nullable|string',
-            'opponent_lawyer' => 'nullable|string',
-            'lawyer_phone' => 'nullable|string',
-            'court_name' => 'nullable|string',
-            'judge_name' => 'nullable|string',
-            'case_number' => 'nullable|string',
-            'case_title' => 'nullable|string',
-            'contract_price' => 'nullable|integer',
-            'notes' => 'nullable|string',
+            'opponent_lawyer'  => 'nullable|string',
+            'lawyer_phone'     => 'nullable|string',
+            'court_name'       => 'nullable|string',
+            'judge_name'       => 'nullable|string',
+            'case_number'      => 'nullable|string',
+            'case_title'       => 'nullable|string',
+            'contract_price'   => 'nullable|integer',
+            'notes'            => 'nullable|string',
             'case_category_id' => 'nullable|exists:case_categories,id',
-
         ];
     }
 }

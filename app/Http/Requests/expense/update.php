@@ -22,13 +22,13 @@ class update extends FormRequest
     public function rules(): array
     {
         return [
-            'name' => 'nullable|string',
-            'amount' => 'nullable|numeric',
-            'method' => 'nullable|string',
+            'name'        => 'nullable|string',
+            'amount'      => 'nullable|numeric',
+            'method'      => 'nullable|string',
+            'date'        => 'nullable|date',
+            'note'        => 'nullable|string',
+            'description' => 'nullable|string',
             'category_id' => 'nullable|exists:expense_categories,id',
-            'date' => 'nullable|date',
-            'note' => 'nullable|string',
-            'description'=> 'nullable|string',
         ];
     }
 }

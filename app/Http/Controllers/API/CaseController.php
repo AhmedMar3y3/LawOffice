@@ -32,15 +32,15 @@ class CaseController extends Controller
             $remainingAmount = $case->contract_price - $paidAmount;
     
             return [
-                'case id' => $case->id,
-                'case number' => $case->case_number,
-                'customer name' => $case->customer->name,
-                'customer phone' => $case->customer->phone,
+                'case id'           => $case->id,
+                'case number'       => $case->case_number,
+                'customer name'     => $case->customer->name,
+                'customer phone'    => $case->customer->phone,
                 'customer category' => $case->customer->category->name,
-                'case category' => $case->category->name,
-                'contract price' => $case->contract_price,
-                'paid amount' => $paidAmount,
-                'remaining amount' => $remainingAmount,
+                'case category'     => $case->category->name,
+                'contract price'    => $case->contract_price,
+                'paid amount'       => $paidAmount,
+                'remaining amount'  => $remainingAmount,
             ];
         });
     
@@ -87,10 +87,10 @@ class CaseController extends Controller
         $remainingAmount = $case->contract_price - $paidAmount;
     
         return response()->json([
-            'case' =>  $caseDetails,
-            'customer' => $case->customer,
-            'case_category' => $case->category,
-            'paid_amount' => $paidAmount,
+            'case'             =>  $caseDetails,
+            'customer'         => $case->customer,
+            'case_category'    => $case->category,
+            'paid_amount'      => $paidAmount,
             'remaining_amount' => $remainingAmount,
         ], 200);
     }

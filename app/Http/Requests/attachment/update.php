@@ -22,7 +22,7 @@ class update extends FormRequest
     public function rules(): array
     {
         return [
-            'file' => 'nullable|file|mimes:jpeg,png,jpg,gif,svg,pdf,doc,docx,xls,xlsx,ppt,pptx,txt,zip,rar|max:2048',
+            'file'  => 'nullable|file|mimes:jpeg,png,jpg,gif,svg,pdf,doc,docx,xls,xlsx,ppt,pptx,txt,zip,rar|max:2048',
             'title' => 'nullable|string|max:255',
         ];
     }

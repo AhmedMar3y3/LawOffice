@@ -21,11 +21,11 @@ class update extends FormRequest
      */
     public function rules(): array
     {
-        return [
-            'title' => 'nullable|string|max:255',
-            'date' => 'nullable|date',
+        return
+        [
+            'title'       => 'nullable|string|max:255',
+            'date'        => 'nullable|date',
             'description' => 'nullable|string',
-            'case_id' => 'nullable|exists:issues,id',
         ];
     }
 }

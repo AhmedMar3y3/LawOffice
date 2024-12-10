@@ -21,14 +21,14 @@ class GettingController extends Controller
     return response()->json([
         'sessions' => $sessions->map(function ($session) {
             return [
-                'session_id' => $session->id,
-                'case_id' => $session->case->id,
-                'case_number' => $session->case->case_number,
-                'customer_id' => $session->case->customer->id,
+                'case_id'       => $session->case->id,
+                'case_number'   => $session->case->case_number,
+                'customer_id'   => $session->case->customer->id,
                 'customer_name' => $session->case->customer->name,
-                'title' => $session->title,
-                'description' => $session->description,
-                'date' => $session->date,
+                'session_id'    => $session->id,
+                'title'         => $session->title,
+                'description'   => $session->description,
+                'date'          => $session->date,
             ];
         }),
     ], 200);
@@ -46,15 +46,15 @@ class GettingController extends Controller
     return response()->json([
         'payments' => $payments->map(function ($payment) {
             return [
-                'payment_id' => $payment->id,
-                'case_id' => $payment->case->id,
-                'case_number' => $payment->case->case_number,
-                'customer_id' => $payment->case->customer->id,
+                'case_id'       => $payment->case->id,
+                'case_number'   => $payment->case->case_number,
+                'customer_id'   => $payment->case->customer->id,
                 'customer_name' => $payment->case->customer->name,
-                'title' => $payment->title,
-                'amount' => $payment->amount,
-                'method' => $payment->method,
-                'date' => $payment->date,
+                'payment_id'    => $payment->id,
+                'title'         => $payment->title,
+                'amount'        => $payment->amount,
+                'method'        => $payment->method,
+                'date'          => $payment->date,
             ];
         }),
     ], 200);
@@ -71,13 +71,13 @@ class GettingController extends Controller
         'attachments' => $attachments->map(function ($attachment) {
             return [
                 'attachment_id' => $attachment->id,
-                'case_id' => $attachment->case->id,
-                'case_number' => $attachment->case->case_number,
-                'customer_id' => $attachment->case->customer->id,
+                'case_id'       => $attachment->case->id,
+                'case_number'   => $attachment->case->case_number,
+                'customer_id'   => $attachment->case->customer->id,
                 'customer_name' => $attachment->case->customer->name,
-                'title' => $attachment->title,
-                'file path' => $attachment->file_path,
-                'file type' => $attachment->file_type,
+                'title'         => $attachment->title,
+                'file path'     => $attachment->file_path,
+                'file type'     => $attachment->file_type,
             ];
         }),
     ], 200);
@@ -97,16 +97,16 @@ public function getAllCases()
             $remainingAmount = $case->contract_price - $paidAmount;
 
             return [
-                'case_id' => $case->id,
-                'case_number' => $case->case_number,
-                'customer_id' => $case->customer->id,
-                'customer_name' => $case->customer->name,
-                'customer_phone' => $case->customer->phone,
+                'case_id'           => $case->id,
+                'case_number'       => $case->case_number,
+                'customer_id'       => $case->customer->id,
+                'customer_name'     => $case->customer->name,
+                'customer_phone'    => $case->customer->phone,
                 'customer_category' => $case->customer->category->name,
-                'case_category' => $case->category->name,
-                'contract_price' => $case->contract_price,
-                'paid_amount' => $paidAmount,
-                'remaining_amount' => $remainingAmount,
+                'case_category'     => $case->category->name,
+                'contract_price'    => $case->contract_price,
+                'paid_amount'       => $paidAmount,
+                'remaining_amount'  => $remainingAmount,
             ];
         }),
     ], 200);

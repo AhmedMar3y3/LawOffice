@@ -6,8 +6,6 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\expense\store;
 use App\Http\Requests\expense\update;
 use App\Models\Expense;
-use App\Models\ExpenseCategory;
-use Illuminate\Http\Request;
 
 class ExpenseController extends Controller
 {

@@ -26,7 +26,8 @@ class ExpenseCategoryController extends Controller
     
     public function destroy(ExpenseCategory $category)
     {
-        if ($category->user_id !== auth()->id()) {
+        if ($category->user_id !== auth()->id()) 
+        {
             return response()->json('غير مصرح', 403);
         }
         $category->delete();

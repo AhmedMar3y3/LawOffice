@@ -22,13 +22,13 @@ class store extends FormRequest
     public function rules(): array
     {
         return [
-            'name' => 'required|string',
-            'amount' => 'required|numeric',
-            'method' => 'required|string',
+            'name'        => 'required|string',
+            'amount'      => 'required|numeric',
+            'method'      => 'required|string',
+            'date'        => 'required|date',
+            'notes'       => 'nullable|string',
+            'description' => 'nullable|string',
             'category_id' => 'required|exists:expense_categories,id',
-            'date' => 'required|date',
-            'notes' => 'nullable|string',
-            'description'=> 'nullable|string',
         ];
     }
 }

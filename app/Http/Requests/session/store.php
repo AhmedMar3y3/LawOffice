@@ -21,9 +21,10 @@ class store extends FormRequest
      */
     public function rules(): array
     {
-        return [
-            'title' => 'required|string|max:255',
-            'date' => 'required|date',
+        return 
+        [
+            'title'       => 'required|string|max:255',
+            'date'        => 'required|date',
             'description' => 'nullable|string',
         ];
     }

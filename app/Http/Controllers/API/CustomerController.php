@@ -6,19 +6,16 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\customer\storeCustomerRequest;
 use App\Http\Requests\customer\updateCustomerRequest;
 use App\Models\Customer;
-use App\Models\CustomerCategory;
 
 class CustomerController extends Controller
 {
     public function index()
     {
         $query = auth()->user()->customers();
-    
         if (request()->has('name')) {
             $query->where('name', 'LIKE', '%' . request('name') . '%');
         }
         $customers = $query->get();
-    
         return response()->json($customers, 200);
     }
     
@@ -38,12 +35,9 @@ class CustomerController extends Controller
     public function show(string $id)
     {
         $customer = Customer::find($id);
-
-
         if ($customer->user_id !== auth()->id()) {
             return response()->json('غير مصرح', 403);
         }
-
         return response()->json($customer, 200);
         
     }
@@ -70,7 +64,6 @@ class CustomerController extends Controller
         if ($customer->user_id !== auth()->id()) {
             return response()->json('غير مصرح', 403);
         }
-
         $customer->delete();
         return response()->json('تم حذف العميل بنجاح', 200);
     }

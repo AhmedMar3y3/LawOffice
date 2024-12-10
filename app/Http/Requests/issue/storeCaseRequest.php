@@ -23,19 +23,18 @@ class storeCaseRequest extends FormRequest
     {
       
     return [
-        // 'customer_id' => 'required|exists:customers,id',
-        'opponent_name' => 'required|string',
-        'opponent_phone' => 'required|string',
-        'opponent_nation' => 'required|string',
+        'opponent_name'    => 'required|string',
+        'opponent_phone'   => 'required|string',
+        'opponent_nation'  => 'required|string',
         'opponent_address' => 'nullable|string',
-        'opponent_lawyer' => 'required|string',
-        'lawyer_phone' => 'required|string',
-        'court_name' => 'required|string',
-        'judge_name' => 'required|string',
-        'case_number' => 'required|string',
-        'case_title' => 'nullable|string',
-        'contract_price' => 'required|integer',
-        'notes' => 'nullable|string',
+        'opponent_lawyer'  => 'required|string',
+        'lawyer_phone'     => 'required|string',
+        'court_name'       => 'required|string',
+        'judge_name'       => 'required|string',
+        'case_number'      => 'required|string',
+        'case_title'       => 'nullable|string',
+        'contract_price'   => 'required|integer',
+        'notes'            => 'nullable|string',
         'case_category_id' => 'required|exists:case_categories,id',
     ];
     }
