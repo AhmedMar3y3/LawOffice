@@ -29,17 +29,23 @@ class AuthController extends Controller
     {
         $validatedData = $request->validated();
         $user = User::where('email', $request->input('email'))->first();
-        if (!$user || !Hash::check($request->input('password'), $user->password))
-        {
+    
+        if (!$user || !Hash::check($request->input('password'), $user->password)) {
             return response()->json("بيانات غير صحيحة", 404);
         }
+    
+        if (!$user->approved) {
+            return response()->json("حسابك لم يتم الموافقة عليه من قبل الإدارة", 403);
+        }
+    
         $token = $user->createToken('Api token of ' . $user->name)->plainTextToken;
-
+    
         return response()->json([
             'user' => $user->only(['id', 'name', 'email']),
             'token' => $token
         ], 200);
     }
+    
 
     public function logout()
     {

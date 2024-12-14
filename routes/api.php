@@ -2,12 +2,14 @@
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\Admin\AuthController as Admin;
 use App\Http\Controllers\API\AuthController;
 use App\Http\Controllers\API\CaseCategryController;
 use App\Http\Controllers\API\CaseController;
 use App\Http\Controllers\API\CustomerCategryController;
 use App\Http\Controllers\API\CustomerController;
 use App\Http\Controllers\API\AttachmentController;
+use App\Http\Controllers\API\CaseExpenseController;
 use App\Http\Controllers\API\ExpenseCategoryController;
 use App\Http\Controllers\API\ExpenseController;
 use App\Http\Controllers\API\SessionController;
@@ -70,6 +72,13 @@ Route::group(['middleware' => 'auth:sanctum'], function () {
         Route::post('/store-payment', [PaymentController::class, 'store']);
         Route::post('/update-payment/{payment}', [PaymentController::class, 'update']);
         Route::delete('/payment/{payment}', [PaymentController::class, 'destroy']);
+
+        // case expenses routes
+        Route::get('/case-expenses', [CaseExpenseController::class, 'index']);
+        Route::get('/case-expenses/{expense}', [CaseExpenseController::class, 'show']);
+        Route::post('/store-expense', [CaseExpenseController::class, 'store']);
+        Route::post('/update-expense/{expense}', [CaseExpenseController::class, 'update']);
+        Route::delete('/expense/{expense}', [CaseExpenseController::class, 'destroy']);
                
      });
 });
@@ -98,3 +107,4 @@ Route::group(['middleware' => 'auth:sanctum'], function () {
         Route::get('/session-dates', [HomeController::class, 'sessionDates']);
   
 });
+Route::post('/register-admin', [Admin::class, 'register']);

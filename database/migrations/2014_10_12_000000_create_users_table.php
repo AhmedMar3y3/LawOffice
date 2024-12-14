@@ -15,6 +15,9 @@ return new class extends Migration
             $table->id();
             $table->string('name');
             $table->string('email')->unique();
+            $table->string('phone')->nullable();
+            $table->string('card_number')->unique();
+            $table->boolean('approved')->default(false); // Default to false (not approved)
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
             $table->rememberToken();

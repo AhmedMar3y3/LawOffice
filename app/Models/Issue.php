@@ -47,4 +47,8 @@ class Issue extends Model
     {
         return $this->hasMany(Attachment::class, 'case_id');
     }
+    public function expenses()
+    {
+        return $this->hasMany(CaseExpense::class, 'case_id');
+    }
 }

@@ -90,6 +90,7 @@ class CaseController extends Controller
             'case'             =>  $caseDetails,
             'customer'         => $case->customer,
             'case_category'    => $case->category,
+            'case_expenses'    => $case->expenses,
             'paid_amount'      => $paidAmount,
             'remaining_amount' => $remainingAmount,
         ], 200);
