@@ -22,33 +22,33 @@ class DashboardController extends Controller
         $cases = Issue::count();
 
 
-$dailyUsers = User::selectRaw('DATE(created_at) as date, COUNT(*) as total')
-    ->where('created_at', '>=', Carbon::today()->subDays(6))
-    ->groupBy('date')
-    ->orderBy('date')
-    ->pluck('total', 'date')
-    ->toArray();
+        $dailyUsers = User::selectRaw('DATE(created_at) as date, COUNT(*) as total')
+            ->where('created_at', '>=', Carbon::today()->subDays(6))
+            ->groupBy('date')
+            ->orderBy('date')
+            ->pluck('total', 'date')
+            ->toArray();
 
-$last7DaysUsers = [];
-for ($i = 6; $i >= 0; $i--) {
-    $date = Carbon::today()->subDays($i)->toDateString();
-    $last7DaysUsers[$date] = $dailyUsers[$date] ?? 0;
-}
-        
-        return view('dashboard', compact('users', 'approvedUsers','unApprovedUsers', 'currentMonthUsers', 'customers', 'cases', 'last7DaysUsers'));
+        $last7DaysUsers = [];
+        for ($i = 6; $i >= 0; $i--) {
+            $date = Carbon::today()->subDays($i)->toDateString();
+            $last7DaysUsers[$date] = $dailyUsers[$date] ?? 0;
+        }
+
+        return view('dashboard', compact('users', 'approvedUsers', 'unApprovedUsers', 'currentMonthUsers', 'customers', 'cases', 'last7DaysUsers'));
     }
     public function loadOffices(Request $request)
     {
         $query = User::query();
-        
+
         if ($request->has('search')) {
             $query->where('name', 'like', '%' . $request->input('search') . '%');
         }
-        
+
         $users = $query->orderBy('approved', 'asc')->paginate(10);
         return view('offices.index', compact('users'));
     }
-    
+
     public function loadOffice($id)
     {
         $user = User::find($id);
@@ -62,25 +62,25 @@ for ($i = 6; $i >= 0; $i--) {
         return redirect()->route('offices.index')->with('success', 'تم حذف المكتب بنجاح');
     }
     public function approveUser($id)
-{
-    $user = User::findOrFail($id);
-    $user->approved = true;
-    $user->save();
-    
+    {
+        $user = User::findOrFail($id);
+        $user->approved = true;
+        $user->save();
 
-    Mail::raw("تم تأكيد الحساب بنجاح يمكنك الأن تسجيل الدخول", function ($message) use ($user) {
-        $message->to($user->email)
-            ->subject('تأكيد الحساب');
-    });
-    return redirect()->route('offices.index')->with('success', 'تمت الموافقة على المستخدم بنجاح');
-}
 
-public function rejectUser($id)
-{
-    $user = User::findOrFail($id);
-    $user->delete();
+        Mail::raw("تم تأكيد الحساب بنجاح يمكنك الأن تسجيل الدخول", function ($message) use ($user) {
+            $message->to($user->email)
+                ->subject('تأكيد الحساب');
+        });
+        return redirect()->route('offices.index')->with('success', 'تمت الموافقة على المستخدم بنجاح');
+    }
 
-    return redirect()->route('offices.index')->with('success', 'تم رفض المستخدم وحذفه بنجاح');
-}
+    public function rejectUser($id)
+    {
+        $user = User::findOrFail($id);
+        $user->delete();
+
+        return redirect()->route('offices.index')->with('success', 'تم رفض المستخدم وحذفه بنجاح');
+    }
 
 }

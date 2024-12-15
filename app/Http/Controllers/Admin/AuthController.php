@@ -12,7 +12,8 @@ use Illuminate\Http\Request;
 
 class AuthController extends Controller
 {
-    public function register(store $request){
+    public function register(store $request)
+    {
 
         $validatedDate = $request->validated();
         if (Admin::count() > 0) {
@@ -27,19 +28,20 @@ class AuthController extends Controller
             'admin' => $admin,
         ], 201);
     }
-    public function loadLoginPage(){
+    public function loadLoginPage()
+    {
         return view('login');
     }
-   
-public function loginUser(login $request)
-{
-    $credentials = $request->validated();
-    if (Auth::guard('admin')->attempt($credentials)) {
-        return redirect()->route('admin.dashboard')->with('success', 'تم تسجيل الدخول بنجاح');
-    }
 
-    return back()->withErrors(['error' => 'بيانات غير صحيحة'])->withInput();
-}
+    public function loginUser(login $request)
+    {
+        $credentials = $request->validated();
+        if (Auth::guard('admin')->attempt($credentials)) {
+            return redirect()->route('admin.dashboard')->with('success', 'تم تسجيل الدخول بنجاح');
+        }
+
+        return back()->withErrors(['error' => 'بيانات غير صحيحة'])->withInput();
+    }
 
     public function logout(Request $request)
     {

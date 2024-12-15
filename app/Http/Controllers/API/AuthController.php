@@ -77,7 +77,7 @@ class AuthController extends Controller
         DB::table('password_reset_tokens')->updateOrInsert(
             ['email' => $request->email],
             [
-                'token' => $code,
+                'token'      => $code,
                 'created_at' => now()
             ]
         );

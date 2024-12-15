@@ -34,12 +34,12 @@ class AttachmentController extends Controller
         $filePath = $file->store('attachments');
         if ($request->hasFile('file')) {
             $file = $request->file('file');
-            $fileName = time() . '-' . uniqid() . '.' . $file->getClientOriginalExtension();  
+            $fileName = time() . '-' . uniqid() . '.' . $file->getClientOriginalExtension();
             $file->move(public_path('attachments'), $fileName);
             $filePath = env('APP_URL') . '/public/attachments/' . $fileName;
         }
         $attachment = $case->attachments()->create([
-            'title'     => $request->title,
+            'title' => $request->title,
             'file_path' => $filePath,
             'file_type' => $file->getClientOriginalExtension(),
         ]);
