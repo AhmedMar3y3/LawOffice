@@ -18,6 +18,14 @@ class AuthController extends Controller
     { 
         $validatedData = $request->validated();
         $validatedData['password'] = Hash::make($validatedData['password']);
+        if ($request->hasFile('image')) {
+            $image = $request->file('image');
+            $imageName = time() . '-' . uniqid() . '.' . $image->getClientOriginalExtension();
+            
+            $image->move(public_path('users'), $imageName);
+    
+            $validatedData['image'] = env('APP_URL') . '/public/users/' . $imageName;
+        }
         $user = User::create($validatedData);     
         $user->save();
         return response()->json([ 

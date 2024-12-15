@@ -24,9 +24,11 @@ class storeUserRequest extends FormRequest
         return [
             'name'        => 'required|string|max:255',
             'phone'       => 'required|string|max:13',
-            'card_number' => 'required|numeric|unique:users,card_number',
             'email'       => 'required|email|unique:users,email',
+            'image'       => 'nullable|image|mimes:png,jpg,jpeg|max:2048',
             'password'    => 'required|string|min:8',
+            'card_number' => 'required|numeric|unique:users,card_number',
+
         ];
     }
 }

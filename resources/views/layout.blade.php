@@ -81,14 +81,7 @@
           <span>مكاتب المحاماة</span>
         </a>
       </li>
- 
-      {{-- <li class="nav-item">
-        <a class="nav-link {{ request()->routeIs('logout') ? 'active' : '' }}" href="{{ route('logout') }}">
-          <i class="bi bi-box-arrow-right"></i>
-          <span>تسجيل الخروج</span>
-        </a>
-      </li> --}}
-       
+      
       <li class="nav-item">
         <form method="POST" action="{{ route('logout') }}">
           @csrf
@@ -110,7 +103,7 @@
   <footer id="footer" class="footer">
     <div class="container">
       <div class="copyright">
-        &copy; {{ date('Y') }} جميع الحقوق محفوظة لشركة <strong></strong> <a href="https://fourthpyramidagcy.com/">الهرم الرابع</a>
+        &copy; {{ date('Y') }} جميع الحقوق محفوظة لشركة <strong ><a style="color: black;" href="https://fourthpyramidagcy.com/">الهرم الرابع</a></strong>
       </div>
     </div>
   </footer>

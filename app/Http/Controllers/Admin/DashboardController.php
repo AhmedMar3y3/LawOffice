@@ -8,6 +8,7 @@ use App\Models\Issue;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Carbon\Carbon;
+use Illuminate\Support\Facades\Mail;
 use Session;
 
 class DashboardController extends Controller
@@ -68,7 +69,12 @@ for ($i = 6; $i >= 0; $i--) {
     $user = User::findOrFail($id);
     $user->approved = true;
     $user->save();
+    
 
+    Mail::raw("تم تأكيد الحساب بنجاح يمكنك الأن تسجيل الدخول", function ($message) use ($user) {
+        $message->to($user->email)
+            ->subject('تأكيد الحساب');
+    });
     return redirect()->route('offices.index')->with('success', 'تمت الموافقة على المستخدم بنجاح');
 }
 

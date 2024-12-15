@@ -15,6 +15,12 @@
     <div class="mb-3">
         <h4>الايميل:</h4> <span>{{ $user->email }}</span>
     </div>
+    <div class="mb-3">
+        @if($user->image)
+            <p><strong>الصورة:</strong></p>
+            <img src="{{ asset('/public/users/' . basename($user->image)) }}" alt="Image" style="width: 100px;">
+        @endif
+    </div>
 </div>
   
 <a href="{{ route('offices.index') }}" class="btn btn-secondary">العودة إلى القائمة</a>

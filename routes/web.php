@@ -8,7 +8,7 @@ use Illuminate\Support\Facades\Route;
 //////////////////////////////////Admin Routes//////////////////////////////////
 
 //public routes
-Route::get('/login', [AuthController::class, 'loadLoginPage'])->name('loginPage');
+Route::get('/', [AuthController::class, 'loadLoginPage'])->name('loginPage');
 Route::post('/login-admin', [AuthController::class, 'loginUser'])->name('loginUser');
 
 //protected routes

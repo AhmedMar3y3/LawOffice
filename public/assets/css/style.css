@@ -69,7 +69,7 @@ h6 {
   right: 15px;
   bottom: 15px;
   z-index: 99999;
-  background: #ee786b;
+  background: #7c4dbe;
   width: 40px;
   height: 40px;
   border-radius: 4px;
@@ -78,13 +78,13 @@ h6 {
 
 .back-to-top i {
   font-size: 24px;
-  color: #0e123e;
+  color: #0d0d0f;
   line-height: 0;
 }
 
 .back-to-top:hover {
   background: #ffffff;
-  color: #0e123e;
+  color: #0d0d0f;
 }
 
 .back-to-top.active {
@@ -373,7 +373,7 @@ h6 {
   z-index: 997;
   height: 60px;
   box-shadow: 0px 2px 20px rgba(1, 41, 112, 0.1);
-  background-color: #0e123e;
+  background-color: #0d0d0f;
   padding-left: 20px;
   /* Toggle Sidebar Button */
   /* Search Bar */
@@ -612,7 +612,7 @@ h6 {
   overflow-y: auto;
   z-index: 996;
   box-shadow: 0px 0px 20px rgba(1, 41, 112, 0.1);
-  background-color: #0e123e;
+  background-color: #0d0d0f;
   direction: rtl;
 }
 /* Hide sidebar when toggle-sidebar class is active */
@@ -637,7 +637,7 @@ body.toggle-sidebar .sidebar {
 }
 
 .sidebar .nav-link.active {
-  background-color: #ee786b;
+  background-color: #7c4dbe;
   color: #fff;
 }
 
@@ -700,7 +700,7 @@ body.toggle-sidebar .sidebar {
   align-items: center;
   font-size: 15px;
   font-weight: 600;
-  color: #0e123e;
+  color: #0d0d0f;
   transition: 0.3s;
   background: #f6f9ff;
   padding: 10px 15px;
@@ -711,7 +711,7 @@ body.toggle-sidebar .sidebar {
 .sidebar-nav .nav-link i {
   font-size: 16px;
   margin-left: 10px; /* Space on left for icons in RTL */
-  color: #0e123e;
+  color: #0d0d0f;
 }
 
 .sidebar-nav .nav-link.collapsed {
@@ -724,12 +724,12 @@ body.toggle-sidebar .sidebar {
 }
 
 .sidebar-nav .nav-link:hover {
-  color: #ee786b;
+  color: #7c4dbe;
   background: #f6f9ff;
 }
 
 .sidebar-nav .nav-link:hover i {
-  color: #ee786b;
+  color: #7c4dbe;
 }
 
 .sidebar-nav .nav-link .bi-chevron-down {
@@ -785,7 +785,7 @@ body.toggle-sidebar .sidebar {
 
 .dashboard .info-card h6 {
   font-size: 28px;
-  color: #0e123e;
+  color: #0d0d0f;
   font-weight: 700;
   margin: 0;
   padding: 0;
@@ -801,7 +801,7 @@ body.toggle-sidebar .sidebar {
 }
 
 .dashboard .sales-card .card-icon {
-  color: #0e123e;
+  color: #0d0d0f;
   background: #000000;
 }
 
@@ -811,7 +811,7 @@ body.toggle-sidebar .sidebar {
 }
 
 .dashboard .customers-card .card-icon {
-  color: #0e123e;
+  color: #0d0d0f;
   background: #ffffff;
 }
 
@@ -1236,12 +1236,12 @@ body.toggle-sidebar .sidebar {
 
 .footer .copyright {
   text-align: center;
-  color: #012970;
+  color: #7c4dbe;
 }
 
 .footer .credits {
   padding-top: 5px;
   text-align: center;
   font-size: 13px;
-  color: #012970;
+  color: #7c4dbe;
 }
