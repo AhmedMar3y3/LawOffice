@@ -4,20 +4,20 @@
 <div class="container">
     <h1>تفاصيل المكتب</h1>
     <div class="mb-3">
-        <h4>الاسم:</h4> <span>{{ $user->name }}</span>
+        <h4>الاسم: {{ $user->name }}</h4>
     </div>
     <div class="mb-3">
-        <h4>رقم الكارنيه :</h4> <span>{{ $user->card_number }}</span>
+        <h4>رقم الكارنيه: {{ $user->card_number }}</h4>
     </div>
     <div class="mb-3">
-        <h4>الهاتف:</h4> <span>{{ $user->phone }}</span>
+        <h4>الهاتف: {{ $user->phone }}</h4>
     </div>
     <div class="mb-3">
-        <h4>الايميل:</h4> <span>{{ $user->email }}</span>
+        <h4>الايميل: {{ $user->email }}</h4>
     </div>
     <div class="mb-3">
         @if($user->image)
-            <p><strong>الصورة:</strong></p>
+           <h4>الصورة:</h4>
             <img src="{{ asset('/public/users/' . basename($user->image)) }}" alt="Image" style="width: 100px;">
         @endif
     </div>

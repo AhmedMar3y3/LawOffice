@@ -7,8 +7,8 @@
         <div class="input-group">
             <input type="text" name="search" class="form-control" placeholder="البحث عن طريق اسم المستخدم" value="{{ request('search') }}">
                 <div class="input-group-append" style="margin-left: 10px;">
-                    <button class="btn btn-primary" type="submit">
-                        <i class="fas fa-search"></i> Search
+                    <button class="btn btn-dark" type="submit">
+                        <i class="fas fa-search"></i> بحث
                     </button>
             </div>
         </div>

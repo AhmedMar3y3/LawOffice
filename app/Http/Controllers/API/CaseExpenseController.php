@@ -7,7 +7,6 @@ use App\Http\Requests\caseExpense\store;
 use App\Http\Requests\caseExpense\update;
 use App\Models\CaseExpense;
 use App\Models\Issue;
-use Illuminate\Http\Request;
 
 class CaseExpenseController extends Controller
 {

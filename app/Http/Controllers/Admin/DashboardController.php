@@ -9,7 +9,6 @@ use App\Models\User;
 use Illuminate\Http\Request;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Mail;
-use Session;
 
 class DashboardController extends Controller
 {
@@ -23,7 +22,6 @@ class DashboardController extends Controller
         $cases = Issue::count();
 
 
-// Get the number of users registered in the last 7 days
 $dailyUsers = User::selectRaw('DATE(created_at) as date, COUNT(*) as total')
     ->where('created_at', '>=', Carbon::today()->subDays(6))
     ->groupBy('date')
@@ -31,7 +29,6 @@ $dailyUsers = User::selectRaw('DATE(created_at) as date, COUNT(*) as total')
     ->pluck('total', 'date')
     ->toArray();
 
-// Fill in missing days with 0 users
 $last7DaysUsers = [];
 for ($i = 6; $i >= 0; $i--) {
     $date = Carbon::today()->subDays($i)->toDateString();
