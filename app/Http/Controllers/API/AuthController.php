@@ -29,7 +29,7 @@ class AuthController extends Controller
         $user = User::create($validatedData);     
         $user->save();
         return response()->json([ 
-            'message' => 'تم التسجيل بنجاح، يمكنك الآن تسجيل الدخول إلى حسابك.'
+            'message' => ' تم التسجيل بنجاح ، برجاء الانتظار حتي يتم قبول طلب سيادتكم.'
         ], 201);
     }
 
@@ -43,7 +43,7 @@ class AuthController extends Controller
         }
     
         if (!$user->approved) {
-            return response()->json("حسابك لم يتم الموافقة عليه من قبل الإدارة", 403);
+            return response()->json(" حسابك لم يتم الموافقة عليه من قبل الإدارة حتي الان برجاء الانتظار", 403);
         }
     
         $token = $user->createToken('Api token of ' . $user->name)->plainTextToken;

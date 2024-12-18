@@ -16,14 +16,18 @@ return new class extends Migration
             $table->unsignedBigInteger('customer_id');
             $table->foreign('customer_id')->references('id')->on('customers')->onDelete('cascade');
             $table->string('opponent_name')->nullable();
+            $table->string('opponent_type')->nullable();
             $table->string('opponent_phone')->nullable();
             $table->string('opponent_nation')->nullable();
             $table->string('opponent_address')->nullable();
             $table->string('opponent_lawyer')->nullable();
             $table->string('lawyer_phone')->nullable();
             $table->string('court_name')->nullable();
+            $table->string('circle')->nullable();
             $table->string('judge_name')->nullable();
             $table->string('case_number')->nullable();
+            $table->string('attorney_number')->nullable();
+            $table->date('register_date')->nullable();
             $table->string('case_title')->nullable();
             $table->integer('contract_price')->nullable();
             $table->string('notes')->nullable();

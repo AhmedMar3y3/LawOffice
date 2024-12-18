@@ -23,14 +23,18 @@ class updateCaseRequest extends FormRequest
     {
         return [
             'opponent_name'    => 'nullable|string',
+            'opponent_type'    => 'nullable|string',
             'opponent_phone'   => 'nullable|string',
             'opponent_nation'  => 'nullable|string',
             'opponent_address' => 'nullable|string',
             'opponent_lawyer'  => 'nullable|string',
             'lawyer_phone'     => 'nullable|string',
             'court_name'       => 'nullable|string',
+            'circle'           => 'nullable|string',
             'judge_name'       => 'nullable|string',
             'case_number'      => 'nullable|string',
+            'attorney_number'  => 'nullable|string',
+            'register_date'    => 'nullable | date',
             'case_title'       => 'nullable|string',
             'contract_price'   => 'nullable|integer',
             'notes'            => 'nullable|string',
