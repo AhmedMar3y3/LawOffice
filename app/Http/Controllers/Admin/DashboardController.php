@@ -85,4 +85,24 @@ class DashboardController extends Controller
         return redirect()->route('offices.index')->with('success', 'تم رفض المستخدم وحذفه بنجاح');
     }
 
+
+public function users(){
+     $users = User::all();
+     return view('tap.users', compact('users'));
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 }

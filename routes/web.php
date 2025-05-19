@@ -19,7 +19,11 @@ Route::middleware(['auth.admin'])->group(function () {
     Route::get('/offices/{id}', [DashboardController::class, 'loadOffice'])->name('offices.show');
     Route::delete('/offices/{id}', [DashboardController::class, 'deleteOffice'])->name('offices.delete');
     Route::post('/offices/approve/{id}', [DashboardController::class, 'approveUser'])->name('offices.approve');
-Route::delete('/offices/reject/{id}', [DashboardController::class, 'rejectUser'])->name('offices.reject');
-
-
+    Route::delete('/offices/reject/{id}', [DashboardController::class, 'rejectUser'])->name('offices.reject');
+    
+    //users
+    Route::post('/users', [AuthController::class, 'users'])->name('users'); 
+    
+    
+    
 });

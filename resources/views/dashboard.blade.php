@@ -120,7 +120,7 @@
                     <h5 class="card-title">الجلاسات <span>| الإجمالي</span></h5>
                     <div class="d-flex align-items-center">
                         <div class="card-icon d-flex align-items-center justify-content-center">
-                           <i class="bi bi-bank"></i>
+                        <i class="bi bi-bank"></i>
                         </div>
                         <div class="ps-3">
                             <h6>{{ $Sessions }}</h6>

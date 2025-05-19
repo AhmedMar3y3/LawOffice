@@ -86,7 +86,7 @@
 
 
       <li class="nav-item">
-        <a class="nav-link {{ request()->routeIs('offices.index') ? 'active' : '' }}" href="{{ route('offices.index') }}">
+        <a class="nav-link {{ request()->routeIs('offices.index') ? 'active' : '' }}" href="{{ route('users') }}">
       <i class="bi bi-person-fill"></i>
           <span>العملاء</span>
         </a>
