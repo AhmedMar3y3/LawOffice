@@ -87,7 +87,7 @@
 
       <li class="nav-item">
         <a class="nav-link {{ request()->routeIs('offices.index') ? 'active' : '' }}" href="{{ route('offices.index') }}">
-          <i class="bi bi-building"></i>
+       <i class="bi bi-person-fill"></i>
           <span>العملاء</span>
         </a>
       </li>
@@ -97,7 +97,7 @@
 
 <li class="nav-item">
         <a class="nav-link {{ request()->routeIs('offices.index') ? 'active' : '' }}" href="{{ route('offices.index') }}">
-          <i class="bi bi-building"></i>
+          <i class="bi bi-journal"></i>
           <span>القضايا</span>
         </a>
       </li>
@@ -107,7 +107,7 @@
 
 <li class="nav-item">
         <a class="nav-link {{ request()->routeIs('offices.index') ? 'active' : '' }}" href="{{ route('offices.index') }}">
-          <i class="bi bi-building"></i>
+        <i class="bi bi-bank"></i>
           <span>الجلسات</span>
         </a>
       </li>
