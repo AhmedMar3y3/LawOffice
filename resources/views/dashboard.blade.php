@@ -13,15 +13,23 @@
         min-height: 600px;
         width: 100%;
         direction: rtl;
+        font-family: 'Tajawal', sans-serif;
     }
     .fc-header-toolbar {
         direction: rtl;
     }
     .fc-toolbar-title {
         font-size: 1.5em;
+        font-weight: bold;
     }
     .fc-event {
         cursor: pointer;
+        padding: 3px;
+        border-radius: 4px;
+        margin-bottom: 2px;
+    }
+    .fc-daygrid-event-dot {
+        display: none;
     }
 </style>
 
@@ -154,9 +162,11 @@
 </div>
 
 <!-- مكتبات JavaScript -->
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
 <script src="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.8/main.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.8/locales/ar.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 
 <script>
     // الرسم البياني
@@ -212,10 +222,24 @@
     document.addEventListener('DOMContentLoaded', function() {
         var calendarEl = document.getElementById('calendar');
         
+        if (!calendarEl) {
+            console.error('عنصر التقويم غير موجود! تأكد من وجود div#calendar');
+            return;
+        }
+
+        // إنشاء تواريخ للأحداث
+        var today = new Date();
+        var tomorrow = new Date(today);
+        tomorrow.setDate(today.getDate() + 1);
+        
+        var nextWeek = new Date(today);
+        nextWeek.setDate(today.getDate() + 7);
+
         var calendar = new FullCalendar.Calendar(calendarEl, {
             initialView: 'dayGridMonth',
             locale: 'ar',
             direction: 'rtl',
+            firstDay: 6, // السبت كأول يوم في الأسبوع
             headerToolbar: {
                 right: 'prev,next today',
                 center: 'title',
@@ -230,28 +254,61 @@
             events: [
                 {
                     title: 'جلسة استشارة',
-                    start: new Date(),
-                    color: '#4154f1'
+                    start: today,
+                    color: '#4154f1',
+                    extendedProps: {
+                        description: 'جلسة استشارة مع العميل أحمد'
+                    }
                 },
                 {
                     title: 'اجتماع عميل',
-                    start: new Date(new Date().getTime() + 86400000), // غداً
-                    end: new Date(new Date().getTime() + 86400000 + 3600000), // غداً + ساعة
-                    color: '#2eca6a'
+                    start: tomorrow,
+                    end: new Date(tomorrow.getTime() + 3600000), // +1 ساعة
+                    color: '#2eca6a',
+                    extendedProps: {
+                        description: 'اجتماع متابعة المشروع'
+                    }
                 },
                 {
-                    title: 'موعد نهائي لتسليم الملف',
-                    start: new Date(new Date().getTime() + (86400000 * 3)), // بعد 3 أيام
-                    color: '#ff771d'
+                    title: 'موعد نهائي',
+                    start: nextWeek,
+                    color: '#ff771d',
+                    extendedProps: {
+                        description: 'آخر موعد لتسليم الملفات'
+                    }
                 }
             ],
             eventClick: function(info) {
-                alert('الحدث: ' + info.event.title + '\n' +
-                      'يبدأ: ' + info.event.start.toLocaleString());
+                alert(
+                    'الحدث: ' + info.event.title + '\n' +
+                    'الوصف: ' + info.event.extendedProps.description + '\n' +
+                    'الوقت: ' + info.event.start.toLocaleString('ar-EG')
+                );
+            },
+            eventContent: function(arg) {
+                return {
+                    html: '<i class="bi bi-calendar-event me-1"></i>' + arg.event.title
+                };
+            },
+            datesSet: function(info) {
+                console.log('التاريخ المعروض:', info.view.title);
             }
         });
 
         calendar.render();
+        
+        // إضافة زر لتحديث التقويم (اختياري)
+        var refreshBtn = document.createElement('button');
+        refreshBtn.className = 'btn btn-sm btn-primary ms-2';
+        refreshBtn.innerHTML = '<i class="bi bi-arrow-clockwise"></i> تحديث';
+        refreshBtn.onclick = function() {
+            calendar.refetchEvents();
+        };
+        
+        var toolbar = calendarEl.querySelector('.fc-toolbar-chunk:last-child');
+        if (toolbar) {
+            toolbar.appendChild(refreshBtn);
+        }
     });
 </script>
 
