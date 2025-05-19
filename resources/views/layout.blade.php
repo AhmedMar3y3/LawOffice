@@ -81,7 +81,39 @@
           <span>مكاتب المحاماة</span>
         </a>
       </li>
+
+
+
+
+      <li class="nav-item">
+        <a class="nav-link {{ request()->routeIs('offices.index') ? 'active' : '' }}" href="{{ route('offices.index') }}">
+          <i class="bi bi-building"></i>
+          <span>العملاء</span>
+        </a>
+      </li>
+
+
+
+
+<li class="nav-item">
+        <a class="nav-link {{ request()->routeIs('offices.index') ? 'active' : '' }}" href="{{ route('offices.index') }}">
+          <i class="bi bi-building"></i>
+          <span>القضايا</span>
+        </a>
+      </li>
+
       
+
+
+<li class="nav-item">
+        <a class="nav-link {{ request()->routeIs('offices.index') ? 'active' : '' }}" href="{{ route('offices.index') }}">
+          <i class="bi bi-building"></i>
+          <span>الجلسات</span>
+        </a>
+      </li>
+
+
+
       <li class="nav-item">
         <form method="POST" action="{{ route('logout') }}">
           @csrf
