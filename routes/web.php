@@ -21,8 +21,8 @@ Route::middleware(['auth.admin'])->group(function () {
     Route::post('/offices/approve/{id}', [DashboardController::class, 'approveUser'])->name('offices.approve');
     Route::delete('/offices/reject/{id}', [DashboardController::class, 'rejectUser'])->name('offices.reject');
     
-    //users
-    Route::get('/users', [DashboardController::class, 'users'])->name('offices.users'); 
+    //Session
+    Route::get('/Sessions ', [DashboardController::class, 'Session'])->name('offices.Sessions'); 
     
     
     

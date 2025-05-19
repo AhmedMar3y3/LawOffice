@@ -85,15 +85,6 @@
 
 
 
-      <li class="nav-item">
-        <a class="nav-link {{ request()->routeIs('offices.users') ? 'active' : '' }}" href="{{ route('offices.users') }}">
-      <i class="bi bi-person-fill"></i>
-          <span>العملاء</span>
-        </a>
-      </li>
-
-
-
 
 <li class="nav-item">
         <a class="nav-link {{ request()->routeIs('offices.index')  }}" href="{{ route('offices.index') }}">
@@ -106,7 +97,7 @@
 
 
 <li class="nav-item">
-        <a class="nav-link {{ request()->routeIs('offices.index') ? 'active' : '' }}" href="#">
+        <a class="nav-link {{ request()->routeIs('offices.index') ? 'active' : '' }}" href="{{ route('offices.Sessions') }}">
         <i class="bi bi-bank"></i>
           <span>الجلسات</span>
         </a>
