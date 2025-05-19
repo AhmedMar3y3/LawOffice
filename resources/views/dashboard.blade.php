@@ -10,6 +10,7 @@
 <div class="container dashboard">
     <div class="row">
 
+       
         <!-- كروت الإحصائيات -->
         <div class="col-lg-4 col-md-6 col-sm-12">
             <div class="card info-card customers-card">
@@ -106,6 +107,23 @@
                         </div>
                         <div class="ps-3">
                             <h6>{{  $cases  }}</h6>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+<!-- الجلاسات -->
+
+<div class="col-lg-4 col-md-6 col-sm-12">
+            <div class="card info-card customers-card">
+                <div class="card-body">
+                    <h5 class="card-title">المستخدمين <span>| الإجمالي</span></h5>
+                    <div class="d-flex align-items-center">
+                        <div class="card-icon d-flex align-items-center justify-content-center">
+                            <i class="bi bi-people"></i>
+                        </div>
+                        <div class="ps-3">
+                            <h6>{{ $Sessions }}</h6>
                         </div>
                     </div>
                 </div>

@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Customer;
 use App\Models\Issue;
 use App\Models\User;
+use App\Models\Session;
 use Illuminate\Http\Request;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Mail;
@@ -15,6 +16,7 @@ class DashboardController extends Controller
     public function index()
     {
         $users = User::count();
+        $Sessions = Session::count();
         $unApprovedUsers = User::where('approved', false)->count();
         $approvedUsers = User::where('approved', true)->count();
         $currentMonthUsers = User::whereMonth('created_at', now()->month)->count();
@@ -35,7 +37,7 @@ class DashboardController extends Controller
             $last7DaysUsers[$date] = $dailyUsers[$date] ?? 0;
         }
 
-        return view('dashboard', compact('users', 'approvedUsers', 'unApprovedUsers', 'currentMonthUsers', 'customers', 'cases', 'last7DaysUsers'));
+        return view('dashboard', compact('users', 'approvedUsers', 'unApprovedUsers', 'currentMonthUsers', 'customers', 'cases', 'last7DaysUsers','Sessions'));
     }
     public function loadOffices(Request $request)
     {
