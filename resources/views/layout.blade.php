@@ -96,7 +96,7 @@
 
 
 <li class="nav-item">
-        <a class="nav-link {{ request()->routeIs('offices.index') ? 'active' : '' }}" href="{{ route('offices.index') }}">
+        <a class="nav-link {{ request()->routeIs('offices.index')  }}" href="{{ route('offices.index') }}">
           <i class="bi bi-journal"></i>
           <span>القضايا</span>
         </a>
