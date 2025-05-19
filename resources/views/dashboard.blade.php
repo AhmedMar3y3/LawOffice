@@ -1,4 +1,5 @@
 @extends('layout')
+
 @section('main')
 
 <!-- Bootstrap Icons -->
@@ -6,6 +7,9 @@
 
 <!-- FullCalendar CSS -->
 <link href="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.8/main.min.css" rel="stylesheet">
+
+<!-- ApexCharts for Heartbeat -->
+<script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
 
 <!-- أسلوب إضافي للتقويم -->
 <style>
@@ -22,21 +26,30 @@
         font-size: 1.5em;
         font-weight: bold;
     }
+    .fc-daygrid-day {
+        text-align: center;
+    }
     .fc-event {
         cursor: pointer;
         padding: 3px;
         border-radius: 4px;
         margin-bottom: 2px;
+        background: none !important;
+        border: none !important;
     }
     .fc-daygrid-event-dot {
         display: none;
+    }
+    .heartbeat {
+        width: 100%;
+        height: 20px;
+        margin-top: 5px;
     }
 </style>
 
 <div class="container dashboard">
     <div class="row">
-
-        <!-- كروت الإحصائيات -->
+        <!-- كروت الإحصائيات (محافظة على الأصلية دون تعديل) -->
         <div class="col-lg-4 col-md-6 col-sm-12">
             <div class="card info-card customers-card">
                 <div class="card-body">
@@ -53,7 +66,6 @@
             </div>
         </div>
 
-        <!-- المستخدمين الغير مقبولين -->
         <div class="col-lg-4 col-md-6 col-sm-12">
             <div class="card info-card customers-card">
                 <div class="card-body">
@@ -70,7 +82,6 @@
             </div>
         </div>
 
-        <!-- المستخدمين المقبولين -->
         <div class="col-lg-4 col-md-6 col-sm-12">
             <div class="card info-card customers-card">
                 <div class="card-body">
@@ -87,7 +98,6 @@
             </div>
         </div>
 
-        <!-- المستخدمين الشهر الحالي -->
         <div class="col-lg-4 col-md-6 col-sm-12">
             <div class="card info-card customers-card">
                 <div class="card-body">
@@ -104,7 +114,6 @@
             </div>
         </div>
 
-        <!-- العملاء -->
         <div class="col-lg-4 col-md-6 col-sm-12">
             <div class="card info-card customers-card">
                 <div class="card-body">
@@ -121,7 +130,6 @@
             </div>
         </div>
 
-        <!-- القضايا -->
         <div class="col-lg-4 col-md-6 col-sm-12">
             <div class="card info-card customers-card">
                 <div class="card-body">
@@ -138,7 +146,7 @@
             </div>
         </div>
 
-        <!-- الرسم البياني للمستخدمين خلال 7 أيام -->
+        <!-- الرسم البياني للمستخدمين خلال 7 أيام (محافظة عليه كما هو) -->
         <div class="col-12">
             <div class="card">
                 <div class="card-body">
@@ -157,7 +165,6 @@
                 </div>
             </div>
         </div>
-
     </div>
 </div>
 
@@ -169,7 +176,7 @@
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 
 <script>
-    // الرسم البياني
+    // الرسم البياني (محافظة عليه كما هو)
     document.addEventListener("DOMContentLoaded", () => {
         const last7Days = @json(array_keys($last7DaysUsers));
         const dailyUsers = @json(array_values($last7DaysUsers));
@@ -227,88 +234,84 @@
             return;
         }
 
-        // إنشاء تواريخ للأحداث
-        var today = new Date();
-        var tomorrow = new Date(today);
-        tomorrow.setDate(today.getDate() + 1);
-        
-        var nextWeek = new Date(today);
-        nextWeek.setDate(today.getDate() + 7);
-
+        // إعداد التقويم على مايو 2025
         var calendar = new FullCalendar.Calendar(calendarEl, {
             initialView: 'dayGridMonth',
             locale: 'ar',
             direction: 'rtl',
-            firstDay: 6, // السبت كأول يوم في الأسبوع
+            firstDay: 1, // الإثنين كأول يوم (كما في الصورة)
+            initialDate: '2025-05-01', // بداية مايو 2025
             headerToolbar: {
                 right: 'prev,next today',
                 center: 'title',
-                left: 'dayGridMonth,timeGridWeek,timeGridDay'
+                left: 'dayGridMonth'
             },
             buttonText: {
                 today: 'اليوم',
-                month: 'شهر',
-                week: 'أسبوع',
-                day: 'يوم'
+                month: 'شهر'
             },
-            events: [
-                {
-                    title: 'جلسة استشارة',
-                    start: today,
-                    color: '#4154f1',
-                    extendedProps: {
-                        description: 'جلسة استشارة مع العميل أحمد'
-                    }
-                },
-                {
-                    title: 'اجتماع عميل',
-                    start: tomorrow,
-                    end: new Date(tomorrow.getTime() + 3600000), // +1 ساعة
-                    color: '#2eca6a',
-                    extendedProps: {
-                        description: 'اجتماع متابعة المشروع'
-                    }
-                },
-                {
-                    title: 'موعد نهائي',
-                    start: nextWeek,
-                    color: '#ff771d',
-                    extendedProps: {
-                        description: 'آخر موعد لتسليم الملفات'
-                    }
-                }
-            ],
-            eventClick: function(info) {
-                alert(
-                    'الحدث: ' + info.event.title + '\n' +
-                    'الوصف: ' + info.event.extendedProps.description + '\n' +
-                    'الوقت: ' + info.event.start.toLocaleString('ar-EG')
-                );
+            dayMaxEvents: true, // عرض الحدث كاملاً
+            events: function(fetchInfo, successCallback, failureCallback) {
+                // جلب بيانات الجلسات من الـ API
+                const year = fetchInfo.start.getFullYear();
+                const month = String(fetchInfo.start.getMonth() + 1).padStart(2, '0');
+                fetch(`/api/session-dates/${year}/${month}`)
+                    .then(response => response.json())
+                    .then(data => {
+                        const events = Object.keys(data).map(date => {
+                            const sessionCount = data[date];
+                            return {
+                                title: sessionCount.toString(),
+                                start: date,
+                                allDay: true,
+                                extendedProps: {
+                                    sessionCount: sessionCount
+                                }
+                            };
+                        });
+                        successCallback(events);
+                    })
+                    .catch(error => {
+                        console.error('خطأ في جلب بيانات الجلسات:', error);
+                        failureCallback(error);
+                    });
             },
             eventContent: function(arg) {
-                return {
-                    html: '<i class="bi bi-calendar-event me-1"></i>' + arg.event.title
-                };
+                const sessionCount = arg.event.extendedProps.sessionCount;
+                const div = document.createElement('div');
+                div.innerHTML = `
+                    <div style="font-size: 14px; font-weight: bold;">${sessionCount}</div>
+                    <div id="heartbeat-${arg.event.startStr}" class="heartbeat"></div>
+                `;
+                if (sessionCount > 0) {
+                    setTimeout(() => {
+                        new ApexCharts(document.querySelector(`#heartbeat-${arg.event.startStr}`), {
+                            series: [{
+                                name: 'Heartbeat',
+                                data: [0, 2, 1, 3, 0, 2, 1, 0] // محاكاة نبضة القلب
+                            }],
+                            chart: {
+                                height: 20,
+                                type: 'line',
+                                toolbar: { show: false },
+                                sparkline: { enabled: true }
+                            },
+                            stroke: { width: 2, colors: ['#d92362'] },
+                            tooltip: { enabled: false }
+                        }).render();
+                    }, 0);
+                }
+                return { domNodes: [div] };
             },
-            datesSet: function(info) {
-                console.log('التاريخ المعروض:', info.view.title);
+            eventDidMount: function(info) {
+                // التأكد من أن الأحداث تظهر بشكل صحيح
+                if (info.event.extendedProps.sessionCount === 0) {
+                    info.el.style.display = 'none'; // إخفاء الأيام بدون جلسات إذا لزم الأمر
+                }
             }
         });
 
         calendar.render();
-        
-        // إضافة زر لتحديث التقويم (اختياري)
-        var refreshBtn = document.createElement('button');
-        refreshBtn.className = 'btn btn-sm btn-primary ms-2';
-        refreshBtn.innerHTML = '<i class="bi bi-arrow-clockwise"></i> تحديث';
-        refreshBtn.onclick = function() {
-            calendar.refetchEvents();
-        };
-        
-        var toolbar = calendarEl.querySelector('.fc-toolbar-chunk:last-child');
-        if (toolbar) {
-            toolbar.appendChild(refreshBtn);
-        }
     });
 </script>
 
