@@ -22,7 +22,7 @@ Route::middleware(['auth.admin'])->group(function () {
     Route::delete('/offices/reject/{id}', [DashboardController::class, 'rejectUser'])->name('offices.reject');
     
     //users
-    Route::post('/users', [AuthController::class, 'users'])->name('users'); 
+    Route::post('/users', [DashboardController::class, 'users'])->name('users'); 
     
     
     
