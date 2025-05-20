@@ -92,7 +92,7 @@
 
 
 <li class="nav-item">
-        <a class="nav-link {{ request()->routeIs('offices.users') ? 'active' : '' }}" href="{{ route('offices.users') }}">
+        <a class="nav-link {{ request()->routeIs('offices.sessions') ? 'active' : '' }}" href="{{ route('offices.sessions') }}">
           <i class="bi bi-bank"></i>
           <span> الجلسات</span>
         </a>
