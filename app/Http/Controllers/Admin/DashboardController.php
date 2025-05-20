@@ -86,9 +86,15 @@ class DashboardController extends Controller
     }
 
 
+public function users(){
+     $users = Session::all();
+     return view('tap.users', compact('users'));
+}
+
+
 public function Session(){
      $users = Session::all();
-     return view('tap.Sessions', compact('Sessions'));
+     return view('tap.session', compact('sessions'));
 }
 
 

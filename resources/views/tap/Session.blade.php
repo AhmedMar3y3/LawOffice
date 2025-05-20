@@ -1,1 +1,1 @@
-{{ $Sessions }}
+{{ $sessions }}
