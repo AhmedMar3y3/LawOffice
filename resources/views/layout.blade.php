@@ -91,6 +91,14 @@
       </li>
 
 
+<li class="nav-item">
+        <a class="nav-link {{ request()->routeIs('offices.users') ? 'active' : '' }}" href="{{ route('offices.users') }}">
+          <i class="bi bi-bank"></i>
+          <span> الجلسات</span>
+        </a>
+      </li>
+
+
 
 <li class="nav-item">
         <a class="nav-link {{ request()->routeIs('offices.index')  }}" href="{{ route('offices.index') }}">
@@ -102,12 +110,6 @@
       
 
 
-<li class="nav-item">
-        <a class="nav-link {{ request()->routeIs('offices.sessions') ? 'active' : '' }}" href="{{ route('offices.sessions') }}">
-        <i class="bi bi-bank"></i>
-          <span>الجلسات</span>
-        </a>
-      </li>
 
 
 

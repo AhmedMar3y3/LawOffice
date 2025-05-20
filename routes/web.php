@@ -23,6 +23,7 @@ Route::middleware(['auth.admin'])->group(function () {
     
     //Session
     Route::get('/users_sessions', [DashboardController::class, 'usersSession'])->name('offices.sessions'); 
+    
     Route::get('/users', [DashboardController::class, 'users'])->name('offices.users'); 
     
     
