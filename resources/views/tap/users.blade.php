@@ -1,20 +1,40 @@
 @extends('layout')
 
 @section('main')
+<link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.10.5/font/bootstrap-icons.min.css" rel="stylesheet">
+
+<!-- FullCalendar CSS -->
+<link href="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.8/main.min.css" rel="stylesheet">
+
+
     <div class="container py-5">
-        <div class="row justify-content-center">
-            <div class="col-md-8">
-                <div class="card shadow rounded-4">
-                    <div class="card-header bg-primary text-white rounded-top-4">
-                        <h3 class="mb-0">📌 المستخدمين</h3>
-                    </div>
-                    <div class="card-body">
-                        <p class="fs-4 text-center">
-                            {{ $users }}
-                        </p>
-                    </div>
-                </div>
-            </div>
+        <h2 class="mb-4 text-center">قائمة المستخدمين 👥</h2>
+
+        <div class="table-responsive">
+            <table class="table table-bordered table-hover text-center align-middle">
+                <thead class="table-primary">
+                    <tr>
+                        <th>#</th>
+                        <th>الاسم</th>
+                        <th>البريد الإلكتروني</th>
+                        <th>تاريخ التسجيل</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @forelse($users as $user)
+                        <tr>
+                            <td>{{ $user->id }}</td>
+                            <td>{{ $user->name }}</td>
+                            <td>{{ $user->email }}</td>
+                            <td>{{ $user->created_at->format('Y-m-d') }}</td>
+                        </tr>
+                    @empty
+                        <tr>
+                            <td colspan="4">لا يوجد مستخدمين حتى الآن.</td>
+                        </tr>
+                    @endforelse
+                </tbody>
+            </table>
         </div>
     </div>
 @endsection
