@@ -1,12 +1,14 @@
 @extends('layout')
-
 @section('main')
+
+<!-- Bootstrap Icons -->
 <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.10.5/font/bootstrap-icons.min.css" rel="stylesheet">
 
 <!-- FullCalendar CSS -->
 <link href="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.8/main.min.css" rel="stylesheet">
 
-
+<div class="container dashboard">
+    <div class="row">
     <div class="container py-5">
         <h2 class="mb-4 text-center">قائمة المستخدمين 👥</h2>
 
@@ -37,4 +39,6 @@
             </table>
         </div>
     </div>
-@endsection
+    </div>
+    
+@endsection 
