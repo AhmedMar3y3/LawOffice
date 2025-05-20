@@ -92,7 +92,7 @@
 
 
 <li class="nav-item">
-        <a class="nav-link {{ request()->routeIs('offices.sessions') ? 'active' : '' }}" href="{{ route('offices.sessions') }}">
+        <a class="nav-link {{ request()->routeIs('makeit') ? 'active' : '' }}" href="{{ route('makeit') }}">
           <i class="bi bi-bank"></i>
           <span> الجلسات</span>
         </a>
