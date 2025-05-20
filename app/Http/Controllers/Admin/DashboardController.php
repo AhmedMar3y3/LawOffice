@@ -92,7 +92,7 @@ public function users(){
 }
 
 
-public function session(){
+public function usersSession(){
      $users = Session::all();
      return view('tap.session', compact('sessions'));
 }

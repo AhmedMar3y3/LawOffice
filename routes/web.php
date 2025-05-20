@@ -22,7 +22,7 @@ Route::middleware(['auth.admin'])->group(function () {
     Route::delete('/offices/reject/{id}', [DashboardController::class, 'rejectUser'])->name('offices.reject');
     
     //Session
-    Route::get('/sessions', [DashboardController::class, 'session'])->name('offices.sessions'); 
+    Route::get('/sessions', [DashboardController::class, 'usersSession'])->name('offices.sessions'); 
     Route::get('/users', [DashboardController::class, 'users'])->name('offices.users'); 
     
     
